@@ -6,3 +6,7 @@ services:
     build:
       context: .
       dockerfile: PartnerNode/Dockerfile
+  ethereum:
+    image: ethereum/client-go:latest
+    restart: on-failure
+    command: '--datadir=~/.ethereum/devchain --rinkeby --rpcapi "db,personal,eth,net,web3" --rpcvhosts * --rpccorsdomain * --rpc --rpcaddr 0.0.0.0 '
