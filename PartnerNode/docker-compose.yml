@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  partnernode:
+    image: ${DOCKER_REGISTRY}partnernode
+    build:
+      context: .
+      dockerfile: PartnerNode/Dockerfile
