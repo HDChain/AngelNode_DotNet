@@ -1,2 +1,7 @@
 # PartnerNode_DotNet
-PartnerNode DotNet Core Client
+Official DotNet Core implementation of the PartnerNode Client
+
+
+
+
+
