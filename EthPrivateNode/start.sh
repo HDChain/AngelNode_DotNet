@@ -3,7 +3,7 @@
 RPCPORT=18545
 WSPORT=18546
 if [[ "${ROOT}" == "" ]] ; then ROOT="." ; fi
-[[ "${UNLOCK_ACCOUNT}" != "" ]] || UNLOCK_ACCOUNT="0x1a69fe4d1dd001d4db767a2320cc0fbd5eb8aca6"
+[[ "${UNLOCK_ACCOUNT}" != "" ]] || UNLOCK_ACCOUNT="0x2d75f4f52607fa07555d37f3d6e5919e6de24df0"
 
 
 start() {
@@ -28,9 +28,7 @@ start() {
 }
 
 node_start() {
-  # geth is dumb and won't let us run it in the background, and nohup redirects to file when run in a script
-
-  ./geth \
+  /usr/local/bin/geth \
     --networkid "$(cat "$ROOT/networkid")" \
     --datadir "${ROOT}/chain" \
     --keystore "${ROOT}/keys" \
@@ -78,7 +76,7 @@ setup_chain_template(){
 	if [ ! -d "${ROOT}/chain-template" ]; then
 		echo "Setting up Genesis with Network ID: ${NETWORK_ID:-12346}"
 		sed -i'' -r "s/NETWORK_ID/${NETWORK_ID:-12346}/" ${ROOT}/genesis.json
-		./geth --datadir "${ROOT}/chain-template" --keystore "${ROOT}/keys" init "${ROOT}/genesis.json"
+		/usr/local/bin/geth --datadir "${ROOT}/chain-template" --keystore "${ROOT}/keys" init "${ROOT}/genesis.json"
 
 		echo ${NETWORK_ID:-12346} > "${ROOT}/networkid"
 	fi
