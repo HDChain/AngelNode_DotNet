@@ -2,14 +2,15 @@ version: '3.4'
 
 services:
   partnernode:
-    image: ${DOCKER_REGISTRY}partnernode
+    image: pn:pn
     build:
       context: .
       dockerfile: PartnerNode/Dockerfile
   ethereum:
-    image: ethereum/client-go:latest
-    restart: on-failure
-    command: '--datadir=~/.ethereum/devchain --rinkeby --rpcapi "db,personal,eth,net,web3" --rpcvhosts * --rpccorsdomain * --rpc --rpcaddr 0.0.0.0 '
+    image: pn:eth
+    build:
+      context: ../EthPrivateNode/
+      dockerfile: Dockerfile
   ipfs:
     image: ipfs/go-ipfs:latest
     restart: on-failure
