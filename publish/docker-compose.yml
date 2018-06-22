@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  partnernode:
+    image: pn:pn
+    build:
+      context: .
+      dockerfile: Dockerfile
+  ethereum:
+    image: pn:eth
+    build:
+      context: .
+      dockerfile: PartnerNode/Dockerfile
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    restart: on-failure
+    command: 'daemon'

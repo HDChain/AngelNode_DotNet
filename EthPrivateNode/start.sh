@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 RPCPORT=18545
 WSPORT=18546
