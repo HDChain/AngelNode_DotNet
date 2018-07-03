@@ -6,12 +6,28 @@ services:
     build:
       context: .
       dockerfile: PartnerNode/Dockerfile
+    depends_on:
+      - ethereum
+      - mssql
+      - ipfs
   ethereum:
     image: pn:eth
     build:
       context: ../EthPrivateNode/
       dockerfile: Dockerfile
+    ports:
+      - "8545:8545"
+      - "30303:30303"
   ipfs:
     image: ipfs/go-ipfs:latest
     restart: on-failure
     command: 'daemon'
+  mssql:
+    image: microsoft/mssql-server-linux
+    restart: on-failure
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "mssqlP@ssw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Enterprise" 

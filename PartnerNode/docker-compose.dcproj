@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>9b0054c5-780d-4f62-9092-732316f197b9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/default?account=0x31B98D14007bDEe637298086988A0bBd31184523</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/default/get?account=0x31B98D14007bDEe637298086988A0bBd31184523</DockerServiceUrl>
     <DockerServiceName>partnernode</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

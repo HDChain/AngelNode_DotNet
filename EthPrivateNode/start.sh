@@ -1,9 +1,8 @@
 #!/bin/bash 
 
-RPCPORT=18545
-WSPORT=18546
+RPCPORT=8545
+WSPORT=8546
 if [[ "${ROOT}" == "" ]] ; then ROOT="." ; fi
-[[ "${UNLOCK_ACCOUNT}" != "" ]] || UNLOCK_ACCOUNT="0x2d75f4f52607fa07555d37f3d6e5919e6de24df0"
 
 
 start() {
@@ -29,14 +28,8 @@ start() {
 
 node_start() {
   /usr/local/bin/geth \
-    --networkid "$(cat "$ROOT/networkid")" \
     --datadir "${ROOT}/chain" \
-    --keystore "${ROOT}/keys" \
-    --password "${ROOT}/password.txt" \
-    --unlock "${UNLOCK_ACCOUNT}" \
-    --mine \
-    --rpc --rpcapi eth,net,web3,personal,miner,txpool --rpcaddr 0.0.0.0 --rpcport $RPCPORT --rpccorsdomain '*' --rpcvhosts '*' \
-	--port 30000
+    --rpc --rpcapi admin,eth,net,web3,personal,miner,txpool --rpcaddr 0.0.0.0 --rpcport $RPCPORT --rpccorsdomain '*' --rpcvhosts '*' \
   NODE_PID=$!
 }
 
