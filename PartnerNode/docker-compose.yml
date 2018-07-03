@@ -10,6 +10,8 @@ services:
       - ethereum
       - mssql
       - ipfs
+    ports:
+      - "8081:80"
   ethereum:
     image: pn:eth
     build:

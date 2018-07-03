@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +17,10 @@ namespace PartnerNode
     {
         public static void Main(string[] args)
         {
+            var fi = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log4net.config"));
+            ILoggerRepository repository = LogManager.CreateRepository(Log4NetCore.CoreRepository);
+            XmlConfigurator.Configure(repository, fi);
+
             BuildWebHost(args).Run();
         }
 
