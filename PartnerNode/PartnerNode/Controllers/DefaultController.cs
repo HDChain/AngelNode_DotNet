@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Dapper;
 using Ipfs.Api;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -56,6 +58,16 @@ namespace PartnerNode.Controllers
                         "application/json"));
 
                 var json = await resp.Content.ReadAsStringAsync();
+
+                return json;
+            }
+        }
+        
+        [HttpGet]
+        public string Sql() {
+            using (var db = new SqlConnection("server=mssql;User Id=sa;password=mssqlP@ssw0rd;Database=test01;")) {
+
+                var json = db.QueryFirstOrDefault<string>("select Json from table001 where Id = 1");
 
                 return json;
             }
