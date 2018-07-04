@@ -1,4 +1,6 @@
-﻿namespace PartnerNode.Models {
+﻿using System.Collections.Generic;
+
+namespace PartnerNode.Models {
     /// <summary>
     ///     请求基类
     /// </summary>
@@ -37,6 +39,21 @@
 
     public class RespLoadUserFile : BaseResp {
         public object Ret { get; set; }
+
+        public List<FileItem> Files { get; set; } = new List<FileItem>();
+
+
+        public class FileItem {
+            public string FileName { get; set; }
+
+            public string DisplayName { get; set; }
+
+            public uint CreateTime { get; set; }
+
+            public int FileIndex { get; set; }
+
+            public string Error { get; set; }
+        }
     }
 
 
