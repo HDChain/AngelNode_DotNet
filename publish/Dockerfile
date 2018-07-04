@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore
+FROM microsoft/dotnet:2.1-aspnetcore-runtime 
 
 EXPOSE 80
 COPY /PartnerNode /publish
