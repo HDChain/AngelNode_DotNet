@@ -7,7 +7,11 @@ if [[ "${ROOT}" == "" ]] ; then ROOT="." ; fi
 
 start() {
 	setup_chain_dir
+	cp /static-nodes.json /chain/static-nodes.json
+	
 	node_start
+	
+	
 	
 	node_detect_ready &
 	wait $!
@@ -93,6 +97,8 @@ setup_chain_dir() {
       mv ${ROOT}/chain-template/* ${ROOT}/chain
     fi
   fi
+  
+  
 }
 
 start

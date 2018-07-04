@@ -4,6 +4,8 @@ RUN apk update && apk add bash curl
 	
 COPY genesis.json /genesis.json
 COPY password.txt /password.txt
+COPY static-nodes.json /static-nodes.json
+
 ADD keys /keys
 
 WORKDIR /
