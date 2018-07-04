@@ -21,9 +21,14 @@ services:
       - "8545:8545"
       - "30303:30303"
   ipfs:
-    image: ipfs/go-ipfs:latest
+    image: pn:ipfs
+    build:
+      context: ../IpfsNode/
+      dockerfile: Dockerfile
     restart: on-failure
-    command: 'daemon'
+    ports:
+      - "5001:5001"
+      - "4001:4001"
   mssql:
     image: microsoft/mssql-server-linux
     restart: on-failure
