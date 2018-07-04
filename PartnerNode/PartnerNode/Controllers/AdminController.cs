@@ -16,7 +16,7 @@ namespace PartnerNode.Controllers
     public class AdminController : Controller
     {
         [HttpPost]
-        public async Task<string> AddPeer(ReqAddPeer req) {
+        public async Task<IActionResult> AddPeer(ReqAddPeer req) {
             using (var c = new HttpClient()) {
                 var resp = await c.PostAsync("http://ethereum:8545",
                     new StringContent(JsonConvert.SerializeObject(new JsonReq {
@@ -28,7 +28,9 @@ namespace PartnerNode.Controllers
 
                 var json = await resp.Content.ReadAsStringAsync();
 
-                return json;
+                return new OkObjectResult(new RespAddPeer() {
+                    Ret = Newtonsoft.Json.JsonConvert.DeserializeObject(json)
+                });
             }
         }
 

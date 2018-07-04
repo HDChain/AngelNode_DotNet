@@ -34,6 +34,8 @@ namespace PartnerNode
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseMvc();
         }
     }

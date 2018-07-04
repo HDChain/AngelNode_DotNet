@@ -21,4 +21,40 @@
     public class RespAddPeer : BaseResp {
         public object Ret { get; set; }
     }
+
+
+    #region Db
+
+
+    public class ReqLoadUserFile : BaseReq {
+        public string Account { get; set; }
+
+        public string FileKey { get; set; }
+
+        public string ContractAddress { get; set; }
+
+    }
+
+    public class RespLoadUserFile : BaseResp {
+        public object Ret { get; set; }
+    }
+
+
+
+    #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
