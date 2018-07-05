@@ -53,6 +53,7 @@ begin
     CREATE TABLE [dbo].[IpfsContent](
 	    [Id] [int] IDENTITY(1,1) NOT NULL,
 	    [Account] [varchar](50) NOT NULL,
+        [FileIndex] [int] NOT NULL,
 	    [FileName] [varchar](500) NOT NULL,
 	    [FileContent] [nvarchar](max) NULL,
 	    [FileCreateTime] [bigint] NOT NULL,
@@ -88,12 +89,28 @@ end
 
             try {
                 rpcRet = await contract.Eth.Transactions.Call.SendRequestAsync(contract.GetFunction("GetFileCountByAddress").CreateCallInput(req.Account));
+
+                if (rpcRet.Equals("0x")) {
+                    return new ObjectResult(ret);
+                }
+
                 fileCount = BigInteger.Parse(rpcRet.Replace("0x", ""), NumberStyles.HexNumber);
             } catch (Exception ex) {
                 return this.MakeExceptionResp(ex);
             }
 
-            for (var i = 0; i < fileCount; i++) {
+
+            int startIndex;
+
+            using (var db = new SqlConnection(ChainSqlConn)) {
+                startIndex = db.QueryFirst<int>("select isnull(max(FileIndex),0) from [dbo].[IpfsContent] where [Account]=@Account",
+                    new {
+                        req.Account
+                    });
+            }
+
+
+            for (var i = startIndex; i < fileCount; i++) {
                 try {
                     rpcRet = await contract.Eth.Transactions.Call.SendRequestAsync(contract.GetFunction("GetFileByAddressAndIndex").CreateCallInput(req.Account, i));
                 } catch (Exception ex) {
@@ -167,12 +184,14 @@ if not exists (select 0 from [dbo].[IpfsContent] where [FileName]=@FileName)
 begin
     INSERT INTO [dbo].[IpfsContent]
            ([Account]
+           ,[FileIndex]
            ,[FileName]
            ,[FileContent]
            ,[FileCreateTime]
            ,[DesKey])
      VALUES
            (@Account
+           ,@FileIndex
            ,@FileName
            ,@FileContent
            ,@FileCreateTime
@@ -187,6 +206,7 @@ end
 ",
                             new {
                                 req.Account,
+                                FileIndex = i,
                                 FileName = fileObj.fileName,
                                 FileContent = content,
                                 FileCreateTime = Convert.ToInt64(fileObj.createTime),
