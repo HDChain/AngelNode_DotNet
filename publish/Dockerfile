@@ -1,7 +1,7 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime 
 
 EXPOSE 80
-COPY /PartnerNode /publish
+COPY /partnernode /publish
 
 WORKDIR /publish
 

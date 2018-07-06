@@ -10,6 +10,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PartnerNode.Models;
 
 namespace PartnerNode
 {
@@ -21,7 +22,11 @@ namespace PartnerNode
             ILoggerRepository repository = LogManager.CreateRepository(Log4NetCore.CoreRepository);
             XmlConfigurator.Configure(repository, fi);
 
+            DbHelper.Instance.MsSqlInit();
+
+            FetchUserDataTask.Instance.Start();
             BuildWebHost(args).Run();
+            FetchUserDataTask.Instance.Stop();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

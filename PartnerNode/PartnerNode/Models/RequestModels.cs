@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PartnerNode.Models {
     /// <summary>
@@ -27,35 +28,40 @@ namespace PartnerNode.Models {
 
     #region Db
 
-
-    public class ReqLoadUserFile : BaseReq {
+    public class ReqAddUserDataAccount : BaseReq {
         public string Account { get; set; }
 
         public string FileKey { get; set; }
 
         public string ContractAddress { get; set; }
-
     }
 
-    public class RespLoadUserFile : BaseResp {
-        public object Ret { get; set; }
+    public class ReqDeleteAccount : BaseReq {
+        public int Id { get; set; }
+    }
 
-        public List<FileItem> Files { get; set; } = new List<FileItem>();
+
+    public class ReqQueryHealthPressure : BaseReq {
+        public string Account { get; set; }
+
+        public string DateStart { get; set; }
+
+        public string DateEnd { get; set; }
+    }
+
+    public class RespQueryHealthPressure : BaseResp {
 
 
-        public class FileItem {
-            public string FileName { get; set; }
 
-            public string DisplayName { get; set; }
+        public List<Item> Items { get; set; } = new List<Item>();
 
-            public uint CreateTime { get; set; }
-
-            public int FileIndex { get; set; }
-
-            public string Error { get; set; }
+        public class Item {
+            public DateTime BuildTime { get; set; }
+            public int HighPressure { get; set; }
+            public int LowPressure { get; set; }
+            public int Pulse { get; set; }
         }
     }
-
 
 
     #endregion

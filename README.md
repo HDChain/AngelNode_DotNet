@@ -21,7 +21,7 @@ Official DotNet Core implementation of the AngelNode Client
 1. Install vs 2017 or vs code 
 2. Open PartnerNode\PartnerNode.sln solution file
 3. publish PartnerNode project
-4. cd to directory publish\
+4. cd to directory publish
 5. run **docker-compose build**
 6. run **docker-compose up**
 

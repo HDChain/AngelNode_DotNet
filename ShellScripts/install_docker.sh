@@ -11,3 +11,5 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update
 sudo apt-get install -y docker-ce
+sudo apt install -y python-pip
+pip install docker-compose

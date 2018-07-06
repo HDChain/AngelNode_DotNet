@@ -34,7 +34,26 @@
 					"response": []
 				},
 				{
-					"name": "LoadUserFile",
+					"name": "GetAccountList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{BaseUrl}}api/db/GetAccountList",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"db",
+								"GetAccountList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddUserDataAccount",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -54,26 +73,106 @@
 								},
 								{
 									"key": "Account",
-									"value": "0x5d3ea27d1eac78d4f0a265b97930fe829343ea87",
+									"value": "0x975868c4032B1d2315995AD65fB87F5dd23595e7",
 									"description": "",
 									"type": "text"
 								},
 								{
 									"key": "FileKey",
-									"value": "MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEAqOuJM7uUxDi0KUpBspNrihNWTrcSwUIcic/WlwlxAoM82pSf7/2L9x7IiOg0uMyotFwpqnYeyylz4nouFH4FsiDIj6rFuLlptfuS1dw11NDZkCzIe1ye+g46we5aqyJm6aUrI7XJbmctOKiNpEhiYF3Rt8M2Gx7HmOq9rknSAhlwiBIHgGFl86dtnw/HD3DUA9KrE0Q6k8Uu7tSRkRA5PBUpVjqMA6hrUyjGZQN8TgV1ihY20X80IQ3S6lXQKKsZOovKfFZkzl8UJcyXHIKbZoNz6BjWfhmuFuzUbUarbLEc6apiCC2RkZSvwXgsFiulTkBQdLmPfb9z8CVEWiC/awIBAw==",
+									"value": "MIIBIDANBgkqhkiG9w0BAQEFAAOCAQ0AMIIBCAKCAQEA0hvQXEQKSyXd6Y+b4I45Zvrkw3J/L4LYlwegCmo5ni6UPUwrBdyE4lncQa3lNToyDkY4inX2b9TQ5l/GxXREvJKlX82RXiDjKdHCNwZxzkmZHi05NJvGXQLEzowvZUuy55aw9/xm6UOqX7nkCCN6PAN17h0WeLDVeO6hVJgHf0Z8s2T3FKwoxXk5uWdsSrnrKUW9EhSJLu/1XI6bTkYunORvsYUiwZ7hcWTqy9gjiA6oSC+52R+n7zOnTmjE/BOYqshO3umzaLVGwe+zZiPL6qNBNUYRMuDaDzx6fADOKVS+lffdM/Ov8F85HocjQe1mMoYtyFs2e+TxGi0aBr/gxQIBAw==",
 									"description": "",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{BaseUrl}}api/db/LoadUserFile",
+							"raw": "{{BaseUrl}}api/db/AddUserDataAccount",
 							"host": [
 								"{{BaseUrl}}api"
 							],
 							"path": [
 								"db",
-								"LoadUserFile"
+								"AddUserDataAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "QueryHealthPressure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Account",
+									"value": "0x975868c4032B1d2315995AD65fB87F5dd23595e7",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "DateStart",
+									"value": "2017-1-1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "DateEnd",
+									"value": "2018-1-1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BaseUrl}}api/db/QueryHealthPressure",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"db",
+								"QueryHealthPressure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BaseUrl}}api/db/DeleteAccount",
+							"host": [
+								"{{BaseUrl}}api"
+							],
+							"path": [
+								"db",
+								"DeleteAccount"
 							]
 						}
 					},
@@ -96,7 +195,7 @@
 					"urlencoded": [
 						{
 							"key": "Peer",
-							"value": "enode://91f146ad02496bbc2cbb6c6b0619d242cb8b8a512dbafd612dc1320edb02b2b016db9e7df36280cae6a33d1f9985448abfee55934833f44750f827be75a06bb6@182.254.129.109:30333",
+							"value": "enode://e3dc18e90fe3e64b7004e2e4c7d1c9829ff66a26ab0577c33478312956732b734edb81b2d13108b67dae2cc82dab96af44a150203051d942059f704ea4574428@182.254.129.109:30333",
 							"description": "",
 							"type": "text"
 						}
