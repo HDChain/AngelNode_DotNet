@@ -32,7 +32,7 @@ namespace PartnerNode.Models
 
         private static readonly ILog Logger = LogManager.GetLogger(typeof(DbHelper));
 
-        public void MsSqlInit() {
+        public bool MsSqlInit() {
             try {
                 using (var db = new SqlConnection(MasterSqlConn)) {
                     db.Execute(@"
@@ -95,9 +95,12 @@ WHERE   (JSON_VALUE(FileContent, ''$.Type'') = 1)
 ' 
 
 ");
+
+                    return true;
                 }
             } catch (Exception ex) {
                 Logger.Error(ex);
+                return false;
             }
 
         }
