@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using Ipfs.Api;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nethereum.JsonRpc.Client;
@@ -19,6 +20,7 @@ using PartnerNode.Models;
 
 namespace PartnerNode.Controllers
 {
+    [EnableCors("any")]
     [Route("api/[controller]/[action]")]
     public class DefaultController : Controller
     {
