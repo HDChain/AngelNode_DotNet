@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using Ipfs.Api;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Nethereum.ABI.FunctionEncoding;
 using Nethereum.ABI.FunctionEncoding.Attributes;
@@ -18,6 +19,7 @@ using PartnerNode.Models;
 
 namespace PartnerNode.Controllers {
     [Route("api/[controller]/[action]")]
+    [EnableCors("any")]
     public class DbController : Controller {
        
         [HttpPost]
