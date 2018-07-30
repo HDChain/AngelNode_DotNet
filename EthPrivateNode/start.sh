@@ -33,7 +33,7 @@ start() {
 node_start() {
   /usr/local/bin/geth \
     --datadir "${ROOT}/chain" \
-    --rpc --rpcapi admin,eth,net,web3,personal,miner,txpool --rpcaddr 0.0.0.0 --rpcport $RPCPORT --rpccorsdomain '*' --rpcvhosts '*' \
+    --rpc --rpcapi admin,eth,net,web3,personal,miner,txpool --rpcaddr 0.0.0.0 --rpcport $RPCPORT --rpccorsdomain '*' --rpcvhosts '*' 
   NODE_PID=$!
 }
 
